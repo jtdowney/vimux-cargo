@@ -4,7 +4,7 @@ Run `cargo` commands in vim.
 
 ## Usage
 
-This plugin assumes you have a module named `test` in the current file and that
+This plugin assumes you have a module named `tests` in the current file and that
 modules are not nested.
 
 Add this to your .vimrc or inside .vim/ftplugin/rust.vim if you want only use

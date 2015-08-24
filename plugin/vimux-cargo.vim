@@ -29,9 +29,9 @@ function! CargoUnitTestCurrentFile()
     let module_path = join(filtered_parts, "::")
 
     if module_path == "lib" || module_path == "main"
-      call VimuxRunCommand("clear " . s:separator . " cargo test test::")
+      call VimuxRunCommand("clear " . s:separator . " cargo test tests::")
     else
-      call VimuxRunCommand("clear " . s:separator . " cargo test " . module_path . "::test::")
+      call VimuxRunCommand("clear " . s:separator . " cargo test " . module_path . "::tests::")
     endif
   endif
 endfunction
@@ -54,9 +54,9 @@ function! CargoUnitTestFocused()
     let test_name = split(test_name_raw, "(")[0]
 
     if module_path == "lib" || module_path == "main"
-      call VimuxRunCommand("clear " . s:separator . " cargo test test::" . test_name)
+      call VimuxRunCommand("clear " . s:separator . " cargo test tests::" . test_name)
     else
-      call VimuxRunCommand("clear " . s:separator . " cargo test " . module_path . "::test::" . test_name)
+      call VimuxRunCommand("clear " . s:separator . " cargo test " . module_path . "::tests::" . test_name)
     endif
   endif
 endfunction
