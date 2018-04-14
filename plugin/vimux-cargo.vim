@@ -1,3 +1,4 @@
+command! CargoBuild :call CargoBuild()
 command! CargoRun :call CargoRun()
 command! CargoPromptArgs :call CargoPromptArgs()
 command! CargoTestAll :call CargoTestAll()
@@ -13,6 +14,10 @@ function! ShellCommandSeperator()
 endfunction
 
 let s:separator = ShellCommandSeperator()
+
+function! CargoBuild()
+  call VimuxRunCommand("clear " . s:separator . " cargo build")
+endfunction
 
 function! CargoRun()
   call VimuxRunCommand("clear " . s:separator . " cargo run")
