@@ -2,6 +2,7 @@ command! CargoBuild :call CargoBuild()
 command! CargoRun :call CargoRun()
 command! CargoPromptArgs :call CargoPromptArgs()
 command! CargoTestAll :call CargoTestAll()
+command! CargoBenchAll :call CargoBenchAll()
 command! CargoUnitTestCurrentFile :call CargoUnitTestCurrentFile()
 command! CargoUnitTestFocused :call CargoUnitTestFocused()
 
@@ -30,6 +31,10 @@ endfunction
 
 function! CargoTestAll()
   call VimuxRunCommand("clear " . s:separator . " cargo test")
+endfunction
+
+function! CargoBenchAll()
+  call VimuxRunCommand("clear " . s:separator . " cargo bench")
 endfunction
 
 function! CargoUnitTestCurrentFile()
