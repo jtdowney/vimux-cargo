@@ -14,7 +14,12 @@ endfunction
 let s:separator = ShellCommandSeperator()
 
 function! CargoRun()
-  call VimuxRunCommand("clear " . s:separator . " cargo run")
+  let args = input('arguments: ')
+  if args != ""
+    call VimuxRunCommand("clear " . s:separator . " cargo run " . args)
+  else
+    call VimuxRunCommand("clear " . s:separator . " cargo run")
+  endif
 endfunction
 
 function! CargoTestAll()
