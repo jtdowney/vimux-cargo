@@ -1,5 +1,8 @@
+command! CargoBuild :call CargoBuild()
 command! CargoRun :call CargoRun()
+command! CargoPromptArgs :call CargoPromptArgs()
 command! CargoTestAll :call CargoTestAll()
+command! CargoBenchAll :call CargoBenchAll()
 command! CargoUnitTestCurrentFile :call CargoUnitTestCurrentFile()
 command! CargoUnitTestFocused :call CargoUnitTestFocused()
 
@@ -13,12 +16,25 @@ endfunction
 
 let s:separator = ShellCommandSeperator()
 
+function! CargoBuild()
+  call VimuxRunCommand("clear " . s:separator . " cargo build")
+endfunction
+
 function! CargoRun()
   call VimuxRunCommand("clear " . s:separator . " cargo run")
 endfunction
 
+function! CargoPromptArgs()
+  let l:args = input(_VimuxOption("g:VimuxPromptString", "Args? "))
+  call VimuxRunCommand("clear " . s:separator . " cargo run -- " . l:args)
+endfunction
+
 function! CargoTestAll()
   call VimuxRunCommand("clear " . s:separator . " cargo test")
+endfunction
+
+function! CargoBenchAll()
+  call VimuxRunCommand("clear " . s:separator . " cargo bench")
 endfunction
 
 function! CargoUnitTestCurrentFile()
