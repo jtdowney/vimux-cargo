@@ -25,7 +25,7 @@ function! CargoRun()
 endfunction
 
 function! CargoPromptArgs()
-  let l:args = input(_VimuxOption("g:VimuxPromptString", "Args? "))
+  let l:args = input(VimuxOption("VimuxPromptString"))
   call VimuxRunCommand("clear " . s:separator . " cargo run -- " . l:args)
 endfunction
 
