@@ -1,7 +1,7 @@
 # vimux-cargo
 
 Run [cargo](https://github.com/rust-lang/cargo) commands in vim and tmux using
-[vimux](https://github.com/benmills/vimux).
+[vimux](https://github.com/preservim/vimux).
 
 ## Usage
 
