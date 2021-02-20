@@ -17,56 +17,56 @@ endfunction
 let s:separator = ShellCommandSeperator()
 
 function! CargoBuild()
-  call VimuxRunCommand("clear " . s:separator . " cargo build")
+  call VimuxRunCommand('clear ' . s:separator . ' cargo build')
 endfunction
 
 function! CargoRun()
-  call VimuxRunCommand("clear " . s:separator . " cargo run")
+  call VimuxRunCommand('clear ' . s:separator . ' cargo run')
 endfunction
 
 function! CargoPromptArgs()
-  let l:args = input(VimuxOption("VimuxPromptString"))
-  call VimuxRunCommand("clear " . s:separator . " cargo run -- " . l:args)
+  let l:args = input(VimuxOption('VimuxPromptString'))
+  call VimuxRunCommand('clear ' . s:separator . ' cargo run -- ' . l:args)
 endfunction
 
 function! CargoTestAll()
-  call VimuxRunCommand("clear " . s:separator . " cargo test")
+  call VimuxRunCommand('clear ' . s:separator . ' cargo test')
 endfunction
 
 function! CargoBenchAll()
-  call VimuxRunCommand("clear " . s:separator . " cargo bench")
+  call VimuxRunCommand('clear ' . s:separator . ' cargo bench')
 endfunction
 
 function! CargoUnitTestCurrentFile()
-  call CargoRunTests("")
+  call CargoRunTests('')
 endfunction
 
 function! CargoUnitTestFocused()
-  let test_line = search("#[test", "bs")
+  let test_line = search('#[test', 'bs')
   ''
 
-  if test_line == 0
+  if test_line ==# 0
     return
   endif
 
   let line = getline(test_line + 1)
-  let test_name_raw = split(line, " ")[1]
-  let test_name = split(test_name_raw, "(")[0]
+  let test_name_raw = split(line, ' ')[1]
+  let test_name = split(test_name_raw, '(')[0]
 
   call CargoRunTests(test_name)
 endfunction
 
 function! CargoRunTests(test_name)
-  let path = expand("%:r")
-  if match(path, "^src/") != -1
-    let parts = split(path, "/")
-    let filtered_parts = filter(parts, 'v:val !~ "mod" && v:val !~ "src"')
-    let module_path = join(filtered_parts, "::")
+  let path = expand('%:r')
+  if match(path, '^src/') != -1
+    let parts = split(path, '/')
+    let filtered_parts = filter(parts, 'v:val !~# "mod" && v:val !~# "src"')
+    let module_path = join(filtered_parts, '::')
 
-    if module_path == "lib" || module_path == "main"
-      call VimuxRunCommand("clear " . s:separator . " cargo test tests::" . a:test_name)
+    if module_path ==# 'lib' || module_path ==# 'main'
+      call VimuxRunCommand('clear ' . s:separator . ' cargo test tests::' . a:test_name)
     else
-      call VimuxRunCommand("clear " . s:separator . " cargo test " . module_path . "::tests::" . a:test_name)
+      call VimuxRunCommand('clear ' . s:separator . ' cargo test ' . module_path . '::tests::' . a:test_name)
     endif
   endif
 endfunction

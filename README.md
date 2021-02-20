@@ -1,5 +1,7 @@
 # vimux-cargo
 
+[![Vint](https://github.com/jtdowney/vimux-cargo/workflows/Vint/badge.svg)](https://github.com/jtdowney/vimux-cargo/actions?workflow=Vint)
+
 Run [cargo](https://github.com/rust-lang/cargo) commands in vim and tmux using
 [vimux](https://github.com/preservim/vimux).
 
