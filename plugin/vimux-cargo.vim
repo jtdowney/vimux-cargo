@@ -43,14 +43,16 @@ endfunction
 
 function! CargoUnitTestFocused()
   let test_line = search('#[test', 'bs')
-  ''
 
   if test_line ==# 0
-    return
+      let test_line = search('#[tokio::test', 'bs')
+      if test_line ==# 0
+          return
+      endif
   endif
 
   let line = getline(test_line + 1)
-  let test_name_raw = split(line, ' ')[1]
+  let test_name_raw = split(line, ' fn ')[1]
   let test_name = split(test_name_raw, '(')[0]
 
   call CargoRunTests(test_name)
